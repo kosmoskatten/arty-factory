@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>-*- Arty Factory-*-</title>
+        <title>-*- Arty-Factory-*-</title>
         <script src="/script/jquery-1.11.3.min.js"></script>
         <script src="/script/factory-client.js"></script>
         <style>
-            div.box {
+            div.layout {
                 width: 800px;
+                display: table;
+            }
+            div.box {
+                width: 100%;
+            }
+            button.update {
+                width: 100%;
+                height: 40px;
+                display: table-row;
+                color: #eeeeec;
+                background: #729fcf;
+                font-weight: bold;
+                font-family: Verdana, Geneva, Sans-Serif;
+                border-radius: 8px;
             }
             div.entry {
                 height: 40px;
                 width: 100%;
-                border-bottom: thin solid blue;
+                background: #eeeeec;
+                margin-top: 2px;
+                border: thin solid #729fcf;
+                border-radius: 8px;
+            }
+            p.entry {
+                float: left;
+                color: #729fcf;
+                font-family: Verdana, Geneva, Sans-Serif;
+                font-weight: bold;
+                margin: 10px;
             }
             img.download {
                 width: 36px;
@@ -19,6 +43,19 @@
                 margin: 2px;
                 float: right;
                 object-fit: contain;
+            }
+            div.footer {
+                height: 100px;
+                width: 100%;
+                background: #729fcf;
+                margin-top: 2px;
+                border: thin solid #729fcf;
+                border-radius: 8px;
+                text-align: center;
+            }
+            h1.footer {
+                color: #eeeeef;
+                font-family: Verdana, Geneva, Sans-Serif;
             }
         <style>
     </head>
