@@ -10,6 +10,7 @@ import Data.Aeson (ToJSON)
 import Data.Text (Text)
 import GHC.Generics (Generic)
 import Network.Hive
+import System.Environment (getArgs)
 import System.Directory (getDirectoryContents, doesFileExist)
 
 import qualified Data.Text as T
@@ -24,8 +25,10 @@ data Artyfact
 instance ToJSON Artyfact
 
 main :: IO ()
-main =
-    hive defaultHiveConfig $ do
+main = do
+    [thePort] <- getArgs
+    let config = defaultHiveConfig { port = read thePort }
+    hive config $ do
         get `accepts` Anything
             `handledBy` respondFile "site/index.html"
 
