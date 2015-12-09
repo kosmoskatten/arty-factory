@@ -19,6 +19,10 @@ function updateFileList() {
 }
 
 function createLayout() {
+    var infoText="Download a package by clicking the arrow, or by " +
+                 "right click the arrow (Save link as ...). Unpack, " +
+                 "tar xvfz <file>.tar.gz, cd into the directory and " +
+                 "run ./run-ccm.sh"
     var $layout=$("<div/>", {id: "layout", class: "layout"});
     var $update=$("<button/>", {id: "update",
                                 class: "update",
@@ -26,8 +30,11 @@ function createLayout() {
     var $box=$("<div/>", {id: "box", class: "box"});
     var $footer=$("<div/>", {id: "footer", class: "footer"});
     var $logo=$("<h1/>", {class: "footer", text: "Demo Arty-Factory"});
+    var $info=$("<p/>", {class: "footer",
+                        text: infoText});
 
     $footer.append($logo);
+    $footer.append($info);
     $layout.append($update);
     $layout.append($box);
     $layout.append($footer);
