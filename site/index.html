@@ -5,11 +5,29 @@
         <script src="/script/jquery-1.11.3.min.js"></script>
         <script src="/script/factory-client.js"></script>
         <style>
+            body {
+                background: #729fcf;
+            }
             div.layout {
+                width: 100%;
+
+                display: -moz-box;
+                -moz-box-pack: center;
+                -moz-box-align: center;
+
+                display: -webkit-box;
+                -webkit-box-pack: center;
+                -webkit-box-align: center;
+
+                display: box;
+                box-pack: center;
+                box-align: center;
+            }
+            div.box {
                 width: 800px;
                 display: table;
             }
-            div.box {
+            div.container {
                 width: 100%;
             }
             button.update {
@@ -17,7 +35,7 @@
                 height: 40px;
                 display: table-row;
                 color: #eeeeec;
-                background: #729fcf;
+                background: #3465a4;
                 font-weight: bold;
                 font-family: Verdana, Geneva, Sans-Serif;
                 border-radius: 8px;
@@ -27,12 +45,12 @@
                 width: 100%;
                 background: #eeeeec;
                 margin-top: 2px;
-                border: thin solid #729fcf;
+                border: thin solid #3465a4;
                 border-radius: 8px;
             }
             p.entry {
                 float: left;
-                color: #729fcf;
+                color: #3465a4;
                 font-family: Verdana, Geneva, Sans-Serif;
                 font-weight: bold;
                 margin: 10px;
@@ -47,9 +65,9 @@
             div.footer {
                 height: 150px;
                 width: 100%;
-                background: #729fcf;
+                background: #3465a4;
                 margin-top: 2px;
-                border: thin solid #729fcf;
+                border: thin solid #3465a4;
                 border-radius: 8px;
             }
             h1.footer {
