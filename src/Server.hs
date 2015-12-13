@@ -27,10 +27,13 @@ instance ToJSON Artyfact
 main :: IO ()
 main = do
     [thePort] <- getArgs
-    let config = defaultHiveConfig { port = read thePort }
+    let config = defaultHiveConfig 
+                   { port         = read thePort 
+                   , loggerStream = ToFile "logs/arty-factory.txt" 
+                   }
     hive config $ do
         get `accepts` Anything
-            `handledBy` respondFile "site/index.html"
+            `handledBy` redirectTo "index.html"
 
         get </> "storage" 
             `accepts` Anything
