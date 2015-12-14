@@ -32,16 +32,16 @@ main = do
                    , loggerStream = ToFile "logs/arty-factory.txt" 
                    }
     hive config $ do
-        get `accepts` Anything
-            `handledBy` redirectTo "index.html"
+        match GET `guardedBy` None
+                  `handledBy` redirectTo "index.html"
 
-        get </> "storage" 
-            `accepts` Anything
-            `handledBy` do
-                files <- liftIO getStorageFiles
-                respondJSON $ map toArtyfact files
+        match GET </> "storage" 
+                  `guardedBy` None
+                  `handledBy` do
+                      files <- liftIO getStorageFiles
+                      respondJSON $ map toArtyfact files
 
-        defaultRoute `handledBy` serveDirectory "site"
+        matchAll `handledBy` serveDirectory "site"
 
 toArtyfact :: FilePath -> Artyfact
 toArtyfact file = 
