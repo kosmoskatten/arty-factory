@@ -27,26 +27,25 @@ instance ToJSON Artyfact
 main :: IO ()
 main = do
     [thePort] <- getArgs
-    let config = defaultHiveConfig 
-                   { port         = read thePort 
-                   , loggerStream = ToFile "logs/arty-factory.txt" 
+    let config = defaultHiveConfig
+                   { port         = read thePort
+                   , loggerStream = ToFile "logs/arty-factory.txt"
                    }
     hive config $ do
-        get `accepts` Anything
-            `handledBy` redirectTo "index.html"
+        match GET <!> None
+                  ==> redirectTo "index.html"
 
-        get </> "storage" 
-            `accepts` Anything
-            `handledBy` do
-                files <- liftIO getStorageFiles
-                respondJSON $ map toArtyfact files
+        match GET </> "storage" <!> None
+                  ==> do
+                    files <- liftIO getStorageFiles
+                    respondJSON Ok $ map toArtyfact files
 
-        defaultRoute `handledBy` serveDirectory "site"
+        matchAll ==> serveDirectory "site"
 
 toArtyfact :: FilePath -> Artyfact
-toArtyfact file = 
+toArtyfact file =
     Artyfact { name     = T.pack file
-             , fullPath = T.pack $ storageUrlPrefix `mappend` file 
+             , fullPath = T.pack $ storageUrlPrefix `mappend` file
              }
 
 getStorageFiles :: IO [FilePath]
